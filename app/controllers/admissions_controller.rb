@@ -4,7 +4,7 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
-    @admissions = Admission.all
+    @admissions = Admission.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /admissions/1

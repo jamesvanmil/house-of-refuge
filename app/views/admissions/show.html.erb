@@ -1,4 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_admission_path(@admission) %> |
+<h1><%= @admission.name %></h1>
+
+  <h2>Admission information</h2>
+
+    <p> <%= "#{Admission.human_attribute_name(:history_number)}: #{@admission.history_number}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:date)}: #{@admission.date}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:no_of_times_in_refuge)}: #{@admission.no_of_times_in_refuge}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:for_what_committed)}:\t#{@admission.for_what_committed}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:by_whom_committed)}:\t#{@admission.by_whom_committed}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:disposal)}:\t#{@admission.disposal}" %> </p>
+
+  <h2>Demographic information</h2>
+
+    <p> <%= "#{Admission.human_attribute_name(:age)}:\t#{@admission.age}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:gender)}:\t#{@admission.gender}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:whereborn_city)}:\t#{@admission.whereborn_city}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:whereborn_state)}:\t#{@admission.whereborn_state}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:whereborn_country)}:\t#{@admission.whereborn_country}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:religion)}:\t#{@admission.religion}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:parentage)}:\t#{@admission.parentage}" %> </p>
+
 <%= link_to 'Back', admissions_path %>
