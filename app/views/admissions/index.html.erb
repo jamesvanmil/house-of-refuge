@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Search:</h1>
+
+  <%= form_tag admissions_path, :method => :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+  <% end %>
+
 <h1>Listing Admissions</h1>
 
 <table>
@@ -22,4 +29,4 @@
   </tbody>
 </table>
 
-<%= will_paginate @admissions %>
+<%= will_paginate @search.hits %>

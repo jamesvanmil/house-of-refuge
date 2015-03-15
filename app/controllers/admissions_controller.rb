@@ -4,7 +4,12 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
-    @admissions = Admission.paginate(page: params[:page], per_page: 20)
+    @search = Admission.search do
+      fulltext params[:search]
+      paginate(per_page: 20, page: params[:page])
+    end
+
+    @admissions = @search.results
   end
 
   # GET /admissions/1
@@ -13,13 +18,14 @@ class AdmissionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admission
-      @admission = Admission.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admission_params
-      params[:admission]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admission
+    @admission = Admission.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def admission_params
+    params[:admission]
+  end
 end
