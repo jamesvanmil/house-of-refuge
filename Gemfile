@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby '2.1.5'
+#ruby-gemset=hor
 
 gem 'sunspot_rails'
 gem 'will_paginate'
