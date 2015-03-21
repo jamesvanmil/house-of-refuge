@@ -7,8 +7,4 @@ RSpec.describe "admissions/index", type: :view do
       Admission.create!()
     ])
   end
-
-  it "renders a list of admissions" do
-    render
-  end
 end
