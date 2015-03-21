@@ -3,12 +3,14 @@ ruby '2.1.5'
 #ruby-gemset=hor
 
 gem 'sunspot_rails'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+# Use bootstrap with SASS
+gem 'bootstrap-sass', '~> 3.3.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
