@@ -2,7 +2,16 @@
 
 <h1>Search:</h1>
 
+  <% search_options = [
+    ["Name", "name"],
+    ["Alias", "alias"],
+    ["By Whom Committed", "by_whom_committed"],
+    ["Disposal", "disposal"],
+    ["Parentage", "parentage"]
+  ] %>
+
   <%= form_tag admissions_path, :method => :get do %>
+    <%= select_tag(:field, options_for_select(search_options, selected: params[:field])) %>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", name: nil %>
   <% end %>

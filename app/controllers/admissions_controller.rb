@@ -5,8 +5,9 @@ class AdmissionsController < ApplicationController
   # GET /admissions.json
   def index
     @search = Admission.search do
-      fulltext params[:search]
-      paginate(per_page: 20, page: params[:page])
+      fulltext params[:search], fields: params[:field]
+
+      paginate(per_page: 30, page: params[:page])
     end
 
     @admissions = @search.results
