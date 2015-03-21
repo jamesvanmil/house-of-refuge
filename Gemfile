@@ -3,7 +3,7 @@ ruby '2.1.5'
 #ruby-gemset=hor
 
 gem 'sunspot_rails'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
