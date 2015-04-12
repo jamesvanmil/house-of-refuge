@@ -1,41 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Search:</h1>
+<div class="container">
 
-  <% search_options = [
-    ["Name", "name"],
-    ["Alias", "alias"],
-    ["By Whom Committed", "by_whom_committed"],
-    ["Disposal", "disposal"],
-    ["Parentage", "parentage"]
-  ] %>
+  <h1>Search:</h1>
 
-  <%= form_tag admissions_path, :method => :get do %>
-    <%= select_tag(:field, options_for_select(search_options, selected: params[:field])) %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", name: nil %>
-  <% end %>
+    <% search_options = [
+      ["Name", "name"],
+      ["Alias", "alias"],
+      ["By Whom Committed", "by_whom_committed"],
+      ["Disposal", "disposal"],
+      ["Parentage", "parentage"]
+    ] %>
 
-<h1>Listing Admissions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th><%= Admission.human_attribute_name(:history_number) %></th>
-      <th><%= Admission.human_attribute_name(:name) %></th>
-      <th><%= Admission.human_attribute_name(:age) %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @admissions.each do |admission| %>
-      <tr>
-        <td><%= admission.history_number %></td>
-        <td><%= link_to admission.name, admission %></td>
-        <td><%= admission.age %></td>
-      </tr>
+  <div class="row">
+    <%= form_tag admissions_path, :method => :get do %>
+      <div class="form-group col-sm-4">
+        <%= select_tag(:field, options_for_select(search_options, selected: params[:field]), { class: 'form-control' } ) %>
+      </div>
+      <div class="form-group col-sm-4">
+        <%= text_field_tag :search, params[:search], { class: 'form-control' } %>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-default" %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
+  <h1>Listing Admissions</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= Admission.human_attribute_name(:history_number) %></th>
+        <th><%= Admission.human_attribute_name(:name) %></th>
+        <th><%= Admission.human_attribute_name(:age) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @admissions.each do |admission| %>
+        <tr>
+          <td><%= admission.history_number %></td>
+          <td><%= link_to admission.name, admission %></td>
+          <td><%= admission.age %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
+</div>
