@@ -21,8 +21,10 @@
         <%= text_field_tag :search, params[:search], { class: 'form-control' } %>
       </div>
       <%= submit_tag "Search", class: "btn btn-default" %>
+      <%= link_to "Reset Search", admissions_path, class: "btn btn-default" %>
     <% end %>
   </div>
+
 
   <h1>Listing Admissions</h1>
 
