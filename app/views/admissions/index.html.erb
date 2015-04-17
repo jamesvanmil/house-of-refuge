@@ -14,12 +14,18 @@
 
   <div class="row">
     <%= form_tag admissions_path, :method => :get do %>
-      <div class="form-group col-sm-4">
-        <%= select_tag(:field, options_for_select(search_options, selected: params[:field]), { class: 'form-control' } ) %>
-      </div>
-      <div class="form-group col-sm-4">
-        <%= text_field_tag :search, params[:search], { class: 'form-control' } %>
-      </div>
+
+      <% params[:search].each_with_index do |value, index| %>
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <%= select_tag("field#{index}", options_for_select(search_options, selected: params[:search][0][:field]), { class: 'form-control' } ) %>
+          </div>
+          <div class="form-group col-sm-4">
+            <%= text_field_tag "value#{index}", params[:search][0][:value], { class: 'form-control' } %>
+          </div>
+        </div>
+      <% end %>
+
       <%= submit_tag "Search", class: "btn btn-default" %>
       <%= link_to "Reset Search", admissions_path, class: "btn btn-default" %>
     <% end %>
