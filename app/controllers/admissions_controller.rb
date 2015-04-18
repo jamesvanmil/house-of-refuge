@@ -5,7 +5,7 @@ class AdmissionsController < ApplicationController
   # GET /admissions.json
   def index
     parse_search_request
-    search
+    search 
 
     respond_to do |format|
       format.html
