@@ -5,15 +5,13 @@ class AdmissionsController < ApplicationController
   # GET /admissions.json
   def index
     parse_search_request
+    search
 
-    @search = Admission.search do
-      params[:search].each do |search|
-        fulltext search[:value], fields: search[:field]
-      end
-      paginate(per_page: 30, page: params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render json: non_paginated_search }
+      format.xml { render xml: non_paginated_search }
     end
-
-    @admissions = @search.results
   end
 
   # GET /admissions/1
@@ -22,6 +20,23 @@ class AdmissionsController < ApplicationController
   end
 
   private
+
+  def search(per_page = 20)
+    @search = Admission.search do
+      params[:search].each do |search|
+        fulltext search[:value], fields: search[:field]
+      end
+      paginate(per_page: per_page, page: params[:page])
+    end
+
+    @admissions = @search.results
+  end
+
+  def non_paginated_search
+    ## Sunspot imposes per_page limits by default
+    ## we're working around this by limiting our results to the total number of records
+    search(Admission.all.count)
+  end
 
   def parse_search_request
     fields = select_all_search_fields

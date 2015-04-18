@@ -6,7 +6,4 @@ class Admission < ActiveRecord::Base
     integer :age, :no_of_times_in_refuge, :history_number
     text :no_of_reader, :gender, :whereborn_city, :whereborn_state, :whereborn_country, :religion, :parentage, :image_no
   end
-
-  ## Pagination
-  self.per_page = 10
 end
