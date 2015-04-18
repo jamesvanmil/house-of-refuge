@@ -41,6 +41,7 @@ class AdmissionsController < ApplicationController
   def parse_search_request
     fields = select_all_search_fields
     values = select_all_search_values
+    validate_search_fields(fields, values)
     set_search_fields_and_values(fields, values)
     handle_blank_search
   end
@@ -53,9 +54,16 @@ class AdmissionsController < ApplicationController
     end
   end
 
+  def validate_search_fields(fields, values)
+    raise "Search Field Error" unless get_indices(fields) == get_indices(values)
+  end
+
+  def get_indices(search_hash)
+    (search_hash.keys.collect { |key| key[/\d+$/] }).sort
+  end
+
   def set_counter(fields, values)
-    return fields.count if fields.count == values.count
-    raise "Field count does not match value count"
+    return fields.count
   end
 
   def select_all_search_fields
