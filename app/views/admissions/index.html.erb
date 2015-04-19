@@ -23,11 +23,12 @@
             <%= text_field_tag "value#{index}", params[:search][index][:value], { id: "value#{index}", class: 'form-control' } %>
           </div>
           <div class="form-group col-sm-4">
-            <%= link_to "Remove Field", "", class: "btn btn-default remove-search-field" %>
-            <%= link_to "Add Field", "", class: "btn btn-default add-search-field" if index + 1 == params[:search].count %>
+            <%= link_to "Remove Field", "", class: "btn btn-default remove-search-field" unless params[:search].length == 1 %>
           </div>
         </div>
       <% end %>
+
+      <%= link_to "Add Field", "", class: "btn btn-default add-search-field" %>
 
       <div class="row" id="search-button-row">
         <%= submit_tag "Search", class: "btn btn-default" %>
