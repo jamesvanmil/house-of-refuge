@@ -35,6 +35,7 @@ class AdmissionsController < ApplicationController
   def non_paginated_search
     ## Sunspot imposes per_page limits by default
     ## we're working around this by limiting our results to the total number of records
+    params.delete(:page)
     search(Admission.all.count)
   end
 
