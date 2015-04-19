@@ -45,6 +45,7 @@
     <thead>
       <tr>
         <th><%= Admission.human_attribute_name(:history_number) %></th>
+        <th><%= Admission.human_attribute_name(:date) %></th>
         <th><%= Admission.human_attribute_name(:name) %></th>
         <th><%= Admission.human_attribute_name(:age) %></th>
       </tr>
@@ -54,6 +55,7 @@
       <% @admissions.each do |admission| %>
         <tr>
           <td><%= admission.history_number %></td>
+          <td><%= admission.date %></td>
           <td><%= link_to admission.name, admission %></td>
           <td><%= admission.age %></td>
         </tr>
