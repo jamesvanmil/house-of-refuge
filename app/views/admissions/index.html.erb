@@ -41,27 +41,7 @@
 
   <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
 
-  <table>
-    <thead>
-      <tr>
-        <th><%= Admission.human_attribute_name(:history_number) %></th>
-        <th><%= Admission.human_attribute_name(:date) %></th>
-        <th><%= Admission.human_attribute_name(:name) %></th>
-        <th><%= Admission.human_attribute_name(:age) %></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @admissions.each do |admission| %>
-        <tr>
-          <td><%= admission.history_number %></td>
-          <td><%= admission.date %></td>
-          <td><%= link_to admission.name, admission %></td>
-          <td><%= admission.age %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'admissions/table' %>
 
   <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
 </div>
