@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Admission, type: :model do
 
+  it 'has a valid factory' do
+    expect(build(:admission)).to be_valid
+  end
+
   subject { Admission.new }
 
   ## Administrative 
