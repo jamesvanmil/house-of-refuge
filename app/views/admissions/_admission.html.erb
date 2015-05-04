@@ -1,5 +1,5 @@
 <tr>
-  <td><%= admission.history_number %></td>
+  <td><%= admission.history_number %><%= "+" if admission.shared_history_number? and current_page?(admissions_path) %></td>
   <td><%= admission.date %></td>
   <td><%= link_to admission.name, admission %></td>
   <td><%= admission.age %></td>

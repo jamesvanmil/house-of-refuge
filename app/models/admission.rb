@@ -6,4 +6,8 @@ class Admission < ActiveRecord::Base
     integer :age, :no_of_times_in_refuge, :history_number
     text :no_of_reader, :gender, :whereborn_city, :whereborn_state, :whereborn_country, :religion, :parentage, :image_no
   end
+
+  def shared_history_number?
+    Admission.where(history_number: self.history_number).count > 1
+  end
 end
