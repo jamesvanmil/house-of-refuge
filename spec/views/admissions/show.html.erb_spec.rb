@@ -11,7 +11,6 @@ RSpec.describe "admissions/show", type: :view do
 
   describe "related admissions" do
     before(:each) do
-      sunspot_stop
       @admission1 = create(:admission, history_number: 1)
       @admission2 = create(:admission, history_number: 1)
       @admission3 = create(:admission, history_number: 1)

@@ -50,5 +50,15 @@ RSpec.describe Admission, type: :model do
 
   ## System
   it { should respond_to(:image_no) }
+  it { should respond_to(:shared_history_number?) }
 
+  it 'shared_history_number? returns true if other admissions with the same number exist' do
+    Admission.create(history_number: 1234)
+    expect(Admission.create(history_number: 1234).shared_history_number?).to be_truthy
+  end
+
+  it 'shared_history_number? returns false if no other admissions with the same number exist' do
+    Admission.create(history_number: 1234)
+    expect(Admission.create(history_number: 5678).shared_history_number?).to be_falsey
+  end
 end
