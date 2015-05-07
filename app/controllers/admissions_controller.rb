@@ -26,6 +26,16 @@ class AdmissionsController < ApplicationController
       params[:search].each do |search|
         fulltext search[:value], fields: search[:field]
       end
+
+      with :complaint_of_mother, params[:complaint_of_mother] unless params[:complaint_of_mother].nil?
+      with :complaint_of_father, params[:complaint_of_father] unless params[:complaint_of_father].nil?
+      with :complaint_of_police, params[:complaint_of_police] unless params[:complaint_of_police].nil?
+      with :appearance_bad, params[:appearance_bad] unless params[:appearance_bad].nil?
+      with :appearance_good, params[:appearance_good] unless params[:appearance_good].nil?
+      with :can_read, params[:can_read] unless params[:can_read].nil?
+
+      facet :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read
+
       paginate(per_page: per_page, page: params[:page])
     end
 

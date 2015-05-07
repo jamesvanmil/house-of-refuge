@@ -1,47 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
+  <div class="col-sm-4 sidebar">
+    <%= render 'admissions/facets' %>
+  </div>
 
-  <h1>Search:</h1>
+  <div class="col-sm-8">
+    <%= render 'admissions/search_form' %>
+  </div>
 
-    <% search_options = [
-      ["Name", "name"],
-      ["Alias", "alias"],
-      ["By Whom Committed", "by_whom_committed"],
-      ["Disposal", "disposal"],
-      ["Parentage", "parentage"]
-    ] %>
+  <div class="col-sm-8">
+    <h1>Listing Admissions</h1>
 
-    <%= form_tag admissions_path, :method => :get do %>
+    <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
 
-      <% params[:search].each_with_index do |value, index| %>
-        <div class="row search-row" id="search-row-<%= index %>">
-          <div class="form-group col-sm-4">
-            <%= select_tag("field#{index}", options_for_select(search_options, selected: params[:search][index][:field]), { id: "field#{index}", class: 'form-control' } ) %>
-          </div>
-          <div class="form-group col-sm-4">
-            <%= text_field_tag "value#{index}", params[:search][index][:value], { id: "value#{index}", class: 'form-control' } %>
-          </div>
-          <div class="form-group col-sm-4">
-            <%= link_to "Remove Field", "", class: "btn btn-default remove-search-field" unless params[:search].length == 1 %>
-          </div>
-        </div>
-      <% end %>
-
-      <%= link_to "Add Field", "", class: "btn btn-default add-search-field" %>
-
-      <div class="row" id="search-button-row">
-        <%= submit_tag "Search", class: "btn btn-default" %>
-        <%= link_to "Reset Search", admissions_path, class: "btn btn-default" %>
-      </div>
-    <% end %>
-
-
-  <h1>Listing Admissions</h1>
-
-  <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
-
-  <%= render 'admissions/table' %>
-
-  <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
+    <%= render 'admissions/table' %>
+    <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
