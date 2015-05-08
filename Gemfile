@@ -43,6 +43,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'sunspot_solr'
+  gem 'progress_bar'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

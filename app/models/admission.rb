@@ -1,7 +1,7 @@
 class Admission < ActiveRecord::Base
   ## Sunspot search
   searchable do
-    text  :by_whom_committed, :name, :alias, :for_what_committed, :disposal, :whereborn_city, :whereborn_state, :whereborn_country, :parentage
+    text  :by_whom_committed, :name, :alias, :for_what_committed, :disposal, :whereborn_city, :whereborn_state, :whereborn_country, :parentage, :religion
     boolean :complaint_of_father
     boolean :complaint_of_mother
     boolean :complaint_of_police
@@ -20,8 +20,11 @@ class Admission < ActiveRecord::Base
     boolean :swears
     boolean :uses_liquour
     boolean :uses_tobacco
-    integer :age, :no_of_times_in_refuge, :history_number
-    text :no_of_reader, :gender, :whereborn_city, :whereborn_state, :whereborn_country, :religion, :parentage, :image_no
+    string :gender
+    string :no_of_reader
+    integer :age
+    integer :no_of_times_in_refuge
+    integer :history_number
   end
 
   def shared_history_number?

@@ -4,7 +4,8 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
-    @facets = [:complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
+    @fields = ["by_whom_committed", "name", "alias", "for_what_committed", "disposal", "whereborn_city", "whereborn_state", "whereborn_country", "parentage", "religion", "history_number"]
+    @facets = [:gender, :no_of_reader, :no_of_times_in_refuge, :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
     parse_search_request
     search(@facets)
 
