@@ -1,0 +1,9 @@
+<h2><%= field.to_s.capitalize.gsub(/_/, " ") %></h2>
+
+  <% if params[field].nil? %>
+    <% @search.facet(field).rows.each do |f| %>
+      <%= link_to("#{f.value} (#{f.count})", url_for(params.merge({ (field) => f.value }))) %>
+    <% end %>
+  <% else %>
+    <%= link_to("#{params[field]} (remove)", url_for(params.merge({ (field) => nil }))) %>
+  <% end %>
