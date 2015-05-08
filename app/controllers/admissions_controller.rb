@@ -4,8 +4,9 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
+    @facets = [:complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
     parse_search_request
-    search 
+    search(@facets)
 
     respond_to do |format|
       format.html
@@ -21,20 +22,17 @@ class AdmissionsController < ApplicationController
 
   private
 
-  def search(per_page = 20)
+  def search(facets, per_page = 20)
     @search = Admission.search do
       params[:search].each do |search|
         fulltext search[:value], fields: search[:field]
       end
 
-      with :complaint_of_mother, params[:complaint_of_mother] unless params[:complaint_of_mother].nil?
-      with :complaint_of_father, params[:complaint_of_father] unless params[:complaint_of_father].nil?
-      with :complaint_of_police, params[:complaint_of_police] unless params[:complaint_of_police].nil?
-      with :appearance_bad, params[:appearance_bad] unless params[:appearance_bad].nil?
-      with :appearance_good, params[:appearance_good] unless params[:appearance_good].nil?
-      with :can_read, params[:can_read] unless params[:can_read].nil?
 
-      facet :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read
+      facets.each do |f| 
+        with f, params[f] unless params[f].nil?
+        facet f
+      end
 
       paginate(per_page: per_page, page: params[:page])
     end
