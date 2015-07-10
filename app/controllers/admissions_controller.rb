@@ -51,36 +51,40 @@ class AdmissionsController < ApplicationController
   def parse_search_request
     fields = select_all_search_fields
     values = select_all_search_values
+    remove_blank_valued_fields(fields, values)
     validate_search_fields(fields, values)
     set_search_fields_and_values(fields, values)
     handle_blank_search
   end
 
   def select_all_search_fields
-    params.select { |key, value| key.to_s.match(/^field/)}
+    params.select { |key, value| key.to_s.match(/^field/)}.values
   end
 
   def select_all_search_values
-    params.select { |key, value| key.to_s.match(/^value/)}
+    params.select { |key, value| key.to_s.match(/^value/)}.values
+  end
+
+  def remove_blank_valued_fields(fields, values)
+    while values.rindex("") != nil
+      blank_index = values.rindex("")
+      [fields, values].each { |array| array.slice!(blank_index) }
+    end
   end
 
   def validate_search_fields(fields, values)
-    raise "Search Field Error" unless get_indices(fields) == get_indices(values)
-  end
-
-  def get_indices(search_hash)
-    (search_hash.keys.collect { |key| key[/\d+$/] }).sort
+    raise "Search Field Error" unless fields.length == values.length
   end
 
   def set_search_fields_and_values(fields, values)
     params[:search] = Array.new
-    counter = set_counter(fields, values)
+    counter = set_counter(fields)
     counter.times do |i|
-      params[:search][i] = { field: fields["field#{i}"], value: values["value#{i}"] }
+      params[:search][i] = { field: fields[i], value: values[i] }
     end
   end
 
-  def set_counter(fields, values)
+  def set_counter(fields)
     return fields.count
   end
 
