@@ -56,12 +56,12 @@ class AdmissionsController < ApplicationController
     handle_blank_search
   end
 
-  def set_search_fields_and_values(fields, values)
-    params[:search] = Array.new
-    counter = set_counter(fields, values)
-    counter.times do |i|
-      params[:search][i] = { field: fields["field#{i}"], value: values["value#{i}"] }
-    end
+  def select_all_search_fields
+    params.select { |key, value| key.to_s.match(/^field/)}
+  end
+
+  def select_all_search_values
+    params.select { |key, value| key.to_s.match(/^value/)}
   end
 
   def validate_search_fields(fields, values)
@@ -72,16 +72,16 @@ class AdmissionsController < ApplicationController
     (search_hash.keys.collect { |key| key[/\d+$/] }).sort
   end
 
+  def set_search_fields_and_values(fields, values)
+    params[:search] = Array.new
+    counter = set_counter(fields, values)
+    counter.times do |i|
+      params[:search][i] = { field: fields["field#{i}"], value: values["value#{i}"] }
+    end
+  end
+
   def set_counter(fields, values)
     return fields.count
-  end
-
-  def select_all_search_fields
-    params.select { |key, value| key.to_s.match(/^field/)}
-  end
-
-  def select_all_search_values
-    params.select { |key, value| key.to_s.match(/^value/)}
   end
 
   def handle_blank_search
