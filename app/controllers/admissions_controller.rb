@@ -24,21 +24,7 @@ class AdmissionsController < ApplicationController
   private
 
   def search(facets, per_page = 20)
-    @search = Admission.search do
-      params[:search].each do |search|
-        fulltext search[:value], fields: search[:field]
-      end
-
-
-      facets.each do |f| 
-        with f, params[f] unless params[f].nil?
-        facet f
-      end
-
-      paginate(per_page: per_page, page: params[:page])
-    end
-
-    @admissions = @search.results
+    @admissions = Admissions.all
   end
 
   def non_paginated_search

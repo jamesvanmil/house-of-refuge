@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 #ruby-gemset=hor
 
-gem 'sunspot_rails'
 gem 'will_paginate-bootstrap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,7 +41,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'sunspot_solr'
   gem 'progress_bar'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
