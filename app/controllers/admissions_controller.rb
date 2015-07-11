@@ -4,10 +4,10 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
-    @fields = ["by_whom_committed", "name", "alias", "for_what_committed", "disposal", "whereborn_city", "whereborn_state", "whereborn_country", "parentage", "religion", "history_number"]
+    @fields = ["name", "parentage", "religion"]
     @facets = [:gender, :no_of_reader, :no_of_times_in_refuge, :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
     parse_search_request
-    search(@facets)
+    search
 
     respond_to do |format|
       format.html
@@ -23,15 +23,13 @@ class AdmissionsController < ApplicationController
 
   private
 
-  def search(facets, per_page = 20)
-    @admissions = Admission.all.paginate(per_page: per_page, page: params[:page])
-  end
+  def search(per_page = 20)
+    @admissions = Admission.all
+    params[:search].each do |s|
+      @admissions = @admissions.send("search_by_#{s[:field]}", s[:value]) unless s[:field].nil?
+    end
 
-  def non_paginated_search
-    ## Sunspot imposes per_page limits by default
-    ## we're working around this by limiting our results to the total number of records
-    params.delete(:page)
-    search(Admission.all.count)
+    @admissions = @admissions.paginate(per_page: per_page, page: params[:page])
   end
 
   def parse_search_request
