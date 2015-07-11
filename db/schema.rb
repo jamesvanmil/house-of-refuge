@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150504172932) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admissions", force: :cascade do |t|
     t.integer  "age"
     t.string   "alias"
@@ -53,6 +56,6 @@ ActiveRecord::Schema.define(version: 20150504172932) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "admissions", ["history_number"], name: "index_admissions_on_history_number"
+  add_index "admissions", ["history_number"], name: "index_admissions_on_history_number", using: :btree
 
 end
