@@ -24,7 +24,7 @@ class AdmissionsController < ApplicationController
   private
 
   def search(facets, per_page = 20)
-    @admissions = Admissions.all
+    @admissions = Admission.all.paginate(per_page: per_page, page: params[:page])
   end
 
   def non_paginated_search

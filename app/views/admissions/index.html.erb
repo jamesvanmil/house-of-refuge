@@ -15,6 +15,6 @@
     <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
 
     <%= render 'admissions/table' %>
-    <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @admissions, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

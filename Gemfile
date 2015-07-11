@@ -3,6 +3,8 @@ ruby '2.1.5'
 #ruby-gemset=hor
 
 gem 'will_paginate-bootstrap'
+gem 'pg'
+gem 'pg_search'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
