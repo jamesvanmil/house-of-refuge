@@ -26,6 +26,7 @@ RSpec.describe Admission, type: :model do
   it { should respond_to(:gender) }
   it { should respond_to(:name) }
   it { should respond_to(:whereborn_city) }
+  it { should respond_to(:whereborn_county) }
   it { should respond_to(:whereborn_state) }
   it { should respond_to(:whereborn_country) }
   it { should respond_to(:religion) }

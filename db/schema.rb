@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504172932) do
+ActiveRecord::Schema.define(version: 20150714190129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150504172932) do
     t.string   "whereborn_state"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "whereborn_county"
   end
 
   add_index "admissions", ["history_number"], name: "index_admissions_on_history_number", using: :btree

@@ -27,6 +27,7 @@ namespace :hor do
       by_whom_committed: row["by_whom_committed"],
       age: row["age"],
       whereborn_city: row["whereborn_city"],
+      whereborn_county: row["whereborn_county"],
       whereborn_state: row["whereborn_state"],
       whereborn_country: row["whereborn_country"],
       parentage: row["parentage"],
