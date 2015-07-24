@@ -4,16 +4,16 @@
 
 <%= form_tag admissions_path, :method => :get do %>
 
-  <% params[:search].each_with_index do |value, index| %>
+  <% @search_array.each_with_index do |value, index| %>
     <div class="row search-row" id="search-row-<%= index %>">
       <div class="form-group col-sm-4">
-        <%= select_tag("field#{index}", options_for_select(search_options, selected: params[:search][index][:field]), { id: "field#{index}", class: 'form-control' } ) %>
+        <%= select_tag("field#{index}", options_for_select(search_options, selected: @search_array[index][:field]), { id: "field#{index}", class: 'form-control' } ) %>
       </div>
       <div class="form-group col-sm-4">
-        <%= text_field_tag "value#{index}", params[:search][index][:value], { id: "value#{index}", class: 'form-control' } %>
+        <%= text_field_tag "value#{index}", @search_array[index][:value], { id: "value#{index}", class: 'form-control' } %>
       </div>
       <div class="form-group col-sm-4">
-        <%= link_to "Remove Field", "", class: "btn btn-default remove-search-field" unless params[:search].length == 1 %>
+        <%= link_to "Remove Field", "", class: "btn btn-default remove-search-field" unless @search_array.length == 1 %>
       </div>
     </div>
   <% end %>

@@ -7,7 +7,7 @@ class AdmissionsController < ApplicationController
     @fields = ["by_whom_committed", "name", "alias", "for_what_committed", "disposal", "whereborn_city", "whereborn_state", "whereborn_country", "parentage", "religion", "history_number"]
     @facets = [:gender, :no_of_reader, :no_of_times_in_refuge, :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
     parse_search_request
-    search(@facets)
+    search(@search_array, @facets)
 
     respond_to do |format|
       format.html
@@ -23,9 +23,9 @@ class AdmissionsController < ApplicationController
 
   private
 
-  def search(facets, per_page = 20)
+  def search(search_array, facets, per_page = 20)
     @search = Admission.search do
-      params[:search].each do |search|
+      search_array.each do |search|
         fulltext search[:value], fields: search[:field]
       end
 
@@ -38,6 +38,7 @@ class AdmissionsController < ApplicationController
       paginate(per_page: per_page, page: params[:page])
     end
 
+    #params = @saved_params
     @admissions = @search.results
   end
 
@@ -45,7 +46,7 @@ class AdmissionsController < ApplicationController
     ## Sunspot imposes per_page limits by default
     ## we're working around this by limiting our results to the total number of records
     params.delete(:page)
-    search(Admission.all.count)
+    search(@search_array, @facets, Admission.all.count)
   end
 
   def parse_search_request
@@ -77,10 +78,10 @@ class AdmissionsController < ApplicationController
   end
 
   def set_search_fields_and_values(fields, values)
-    params[:search] = Array.new
+    @search_array = Array.new
     counter = set_counter(fields)
     counter.times do |i|
-      params[:search][i] = { field: fields[i], value: values[i] }
+      @search_array[i] = { field: fields[i], value: values[i] }
     end
   end
 
@@ -89,7 +90,7 @@ class AdmissionsController < ApplicationController
   end
 
   def handle_blank_search
-    params[:search] = [{ value: nil, field: nil }] if params[:search].empty?
+    @search_array = [{ value: nil, field: nil }] if @search_array.empty?
   end
 
   # Use callbacks to share common setup or constraints between actions.
