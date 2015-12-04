@@ -1,0 +1,48 @@
+<p>
+  <%= link_to @gallery_image.image.url do %>
+    <%= image_tag @gallery_image.image.url(:medium) %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @gallery_image.title %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @gallery_image.creator %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @gallery_image.date %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gallery_image.description %>
+</p>
+
+<p>
+  <strong>Source text:</strong>
+  <%= @gallery_image.source_text %>
+</p>
+
+<p>
+  <strong>Source link:</strong>
+  <%= @gallery_image.source_link %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @gallery_image.format.collect { |row| row }.join(", ").html_safe unless @gallery_image.format.nil? %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @gallery_image.subject.collect {|row| link_to row, gallery_images_path(params: { subject: [row] })}.join(", ").html_safe unless @gallery_image.subject.nil? %>
+</p>
+
+<%= link_to 'Edit', edit_gallery_image_path(@gallery_image) %> |
+<%= link_to 'Back', gallery_images_path %>
