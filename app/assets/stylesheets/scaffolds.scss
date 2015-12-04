@@ -67,3 +67,21 @@ div {
     list-style: square;
   }
 }
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 10px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+.navbar-brand-image {
+    padding-right: 5px; 
+    padding-top: 13px;
+}
+
