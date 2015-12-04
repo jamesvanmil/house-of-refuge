@@ -2,17 +2,20 @@ namespace :hor do
 
   require 'csv'
 
-  task:delete_all => :environment do
+  desc "Destroy all admission records"
+  task:delete => :environment do
     puts "Destroying all records"
     Admission.destroy_all
   end
 
-  task:import_from_csv => :environment do
+  desc "Import all admission records"
+  task:import => :environment do
     puts "Importing records from #{data_path}"
     data.each { |row| create_admission(row) }
     puts "Done!"
   end
 
+  desc "Destroy and import all admission records"
   task:reset => [:delete_all, :import_from_csv] do
   end
 
@@ -20,7 +23,7 @@ namespace :hor do
     Admission.create(
       date: row["date"],
       history_number: row["history_number"],
-      name: row["name"],
+      full_name: row["full_name"],
       alias: row["alias"],
       gender: row["gender"],
       for_what_committed: row["for_what_committed"],

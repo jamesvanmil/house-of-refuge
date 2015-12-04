@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150504172932) do
     t.string   "image_no"
     t.boolean  "mother_drinks"
     t.boolean  "mother_living"
-    t.string   "name"
+    t.string   "full_name"
     t.text     "no_of_reader"
     t.integer  "no_of_times_in_refuge"
     t.string   "parentage"
