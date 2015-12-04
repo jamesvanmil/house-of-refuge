@@ -1,7 +1,7 @@
 class Admission < ActiveRecord::Base
   ## Sunspot search
   searchable do
-    text  :by_whom_committed, :name, :alias, :for_what_committed, :disposal, :whereborn_city, :whereborn_state, :whereborn_country, :parentage, :religion
+    text  :by_whom_committed, :full_name, :alias, :for_what_committed, :disposal, :whereborn_city, :whereborn_state, :whereborn_country, :parentage, :religion
     boolean :complaint_of_father
     boolean :complaint_of_mother
     boolean :complaint_of_police
