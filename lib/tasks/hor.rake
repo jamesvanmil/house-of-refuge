@@ -22,7 +22,7 @@ namespace :hor do
   def create_admission(row)
     Admission.create(
       date: row["date"],
-      history_number: row["history_number"],
+      history_number: row["number"],
       full_name: row["name"],
       alias: row["alias"],
       gender: row["gender"],
