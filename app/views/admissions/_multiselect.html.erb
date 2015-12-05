@@ -1,0 +1,4 @@
+<%= select_tag(field, 
+  options_for_select(facets_for_select(field), default_value(field)),
+  multiple: true,
+  class: "js-multiselect form-control") %>

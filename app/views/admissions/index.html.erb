@@ -2,19 +2,42 @@
 
 <div class="container">
   <div class="col-sm-4 sidebar">
-    <%= render 'admissions/facets' %>
+    <%= render 'filter' %>
   </div>
 
   <div class="col-sm-8">
-    <%= render 'admissions/search_form' %>
-  </div>
-
-  <div class="col-sm-8">
-    <h1>Listing Admissions</h1>
-
+    <p><%= render 'admissions/results_number' %></p>
+    <% @admissions.each_with_index do |admission, index| %>
+      <div class="row">
+        <div class="col-xs-1">
+          <%= result_number(index) %>
+        </div>
+        <div class="col-xs-5">
+          <table class="table index-table">
+            <tr>
+              <th>Name:</th>
+              <td><%= admission.full_name %></td>
+            </tr>
+            <tr>
+              <th>Gender:</th>
+              <td><%= admission.gender.capitalize %></td>
+            </tr>
+            <tr>
+              <th>For What Admitted:</th>
+              <td><%= admission.for_what_committed %></td>
+            </tr>
+            <tr>
+              <th>Date Admitted:</th>
+              <td><%= admission.admission_date %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="btn-group">
+          <%= link_to "View", admission, class: "btn btn-default" %>
+        </div>
+      </div>
+    <% end %>
+    <%= will_paginate @admissions, renderer: BootstrapPagination::Rails %>
     <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
-
-    <%= render 'admissions/table' %>
-    <%= will_paginate @search.hits, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

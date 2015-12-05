@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 #ruby-gemset=hor
 
-gem 'sunspot_rails'
 gem 'will_paginate-bootstrap'
 gem 'paperclip'
+gem 'select2-rails'
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

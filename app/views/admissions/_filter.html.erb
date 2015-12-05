@@ -1,0 +1,76 @@
+<%= form_tag("/admissions", method: "get") do %>
+  <h1>Search Filters</h1>
+
+  <h2>Name</h2>
+  <div class="form-group">
+    <div class="input-group">
+      <label>
+        <%= text_field_tag(:name, default_value(:name), { class: 'form-control', placeholder: 'Begin typing a name' }) %>Search Full names and Aliases
+      </label>
+    </div>
+  </div>
+
+  <h2>Age</h2>
+  <%= render partial: 'admissions/multiselect', locals: { field: :age, sort: true } %>
+
+  <h2>Gender</h2>
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <%= check_box_tag(:female, "1", params[:female] == "1") %>Female <%= facet_count_for_gender(:female) %>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <%= check_box_tag(:male, "1", params[:male] == "1") %>Male <%= facet_count_for_gender(:male) %>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <%= check_box_tag(:unknown, "1", params[:unknown] == "1") %>Unknown/Not Recorded <%= facet_count_for_gender(:unknown) %>
+      </label>
+    </div>
+  </div>
+
+  <h2>For What Admitted</h2>
+  <%= render partial: 'admissions/multiselect', locals: { field: :for_what_committed_index, sort: false } %>
+
+  <h2>Religion</h2>
+  <%= render partial: 'admissions/multiselect', locals: { field: :religion_index, sort: false } %>
+
+  <h2>Date Admitted</h2>
+  <div class="form-group">
+    <div class="input-group">
+      <label>
+        <%= text_field_tag(:begin_date, default_value(:begin_date), { class: 'form-control datepicker-from', placeholder: 'Enter start date' }) %>Begin Date
+      </label>
+    </div>
+
+    <div class="input-group">
+      <label>
+        <%= text_field_tag(:end_date, default_value(:end_date), { class: 'form-control datepicker-to', placeholder: 'Enter end date' }) %>End Date
+      </label>
+    </div>
+  </div>
+
+  <h2>Race/Nationality</h2>
+  <%= render partial: 'admissions/multiselect', locals: { field: :parentage_index, sort: false } %>
+
+  <h2>Birth Location</h2>
+  <h3>Country</h3>
+  <%= render partial: 'admissions/multiselect', locals: { field: :whereborn_country, sort: false } %>
+  <h3>State</h3>
+  <%= render partial: 'admissions/multiselect', locals: { field: :whereborn_state, sort: false } %>
+  <h3>City</h3>
+  <%= render partial: 'admissions/multiselect', locals: { field: :whereborn_city, sort: false } %>
+
+  <br>
+
+  <%= submit_tag("Search", class: "btn btn-default") %>
+<% end %>
