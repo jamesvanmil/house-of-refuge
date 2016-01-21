@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hor</title>
+  <title>Cincinnati House of Refuge Project</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/header_navbar.html.erb' %>
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render 'layouts/header_navbar.html.erb' %>
+  <%= yield %>
+  <%= render 'layouts/footer.html.erb' %>
 </body>
 </html>

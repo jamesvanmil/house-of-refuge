@@ -76,6 +76,10 @@ body {
     padding: 10px 0;
 }
 
+.navbar .navbar-toggle {
+    min-height: 50px;
+  }
+
 .navbar-fixed-top .navbar-brand {
     padding: 0 15px;
 }
@@ -85,3 +89,10 @@ body {
     padding-top: 13px;
 }
 
+.footer {
+  padding-top: 50px;
+}
+
+.back-button {
+  padding-top: 20px;
+}

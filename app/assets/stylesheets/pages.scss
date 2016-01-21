@@ -1,3 +1,62 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*!
+ * Start Bootstrap - Small Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Verdana, sans-serif;
+
+}
+
+h1 {
+    color: #CC7762;
+    font-weight: 300;
+}
+
+h2 {
+    color: #645153;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+p {
+    color: #686868;
+}
+
+p, div {
+    font-family: Verdana, sans-serif;
+}
+
+.navbar-fixed-top .nav {
+    padding: 10px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+.navbar-brand-image {
+    padding-right: 15px; 
+}
+
+.btn {
+    color: #CC7762;    
+}
+
+.intro-text {
+    padding-top: 15px;
+}
+
+.image-credit {
+    font-style: italic;
+    font-size: 12px;
+}
+
+footer {
+    padding: 50px 0;
+}
