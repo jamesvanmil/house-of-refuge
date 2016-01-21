@@ -5,7 +5,7 @@ class GalleryImagesController < ApplicationController
   # GET /gallery_images.json
   def index
     @search = GalleryImage.search do
-      paginate(per_page: 25, page: params[:page])
+      paginate(per_page: 20, page: params[:page])
       facet(:subject)
       with(:subject, params[:subject]) if params[:subject].present? 
     end
