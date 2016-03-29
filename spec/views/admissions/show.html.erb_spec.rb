@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "admissions/show", type: :view do
-  before(:each) do
-    @admission = create(:admission)
-  end
-
-  it "renders attributes in <p>" do
-    render
-  end
-
   describe "related admissions" do
     before(:each) do
       @admission1 = create(:admission, history_number: 1)
@@ -19,6 +11,7 @@ RSpec.describe "admissions/show", type: :view do
     end
 
     it "are displayed with the same history number" do
+      save_and_open_page
       expect(page).to have_link(admission_path @admission2)
       expect(page).to have_link(admission_path @admission3)
     end

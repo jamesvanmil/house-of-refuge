@@ -4,16 +4,33 @@ class AdmissionsController < ApplicationController
   # GET /admissions
   # GET /admissions.json
   def index
-    @fields = ["by_whom_committed", "name", "alias", "for_what_committed", "disposal", "whereborn_city", "whereborn_state", "whereborn_country", "parentage", "religion", "history_number"]
-    @facets = [:gender, :no_of_reader, :no_of_times_in_refuge, :complaint_of_mother, :complaint_of_father, :complaint_of_police, :appearance_bad, :appearance_good, :can_read, :can_write, :father_drinks, :father_living, :had_regular_work, :has_step_father, :has_step_mother, :mother_drinks, :mother_living, :played_truant, :swears, :uses_liquour, :uses_tobacco]
-    parse_search_request
-    search(@search_array, @facets)
 
-    respond_to do |format|
-      format.html
-      format.json { render json: non_paginated_search }
-      format.xml { render xml: non_paginated_search }
+    search_params = Hash.new
+
+    facet_fields.each do |field|
+      search_params[field.to_sym] = params[field.to_sym] unless params[field.to_sym].blank?
     end
+
+    gender_search_array = Array.new
+    gender_search_array << "female" if params[:female] == "1"
+    gender_search_array << "male" if params[:male] == "1"
+    gender_search_array << "unknown" if params[:unknown] == "1"
+    search_params[:gender] = gender_search_array unless gender_search_array.blank?
+
+    if params[:begin_date].blank? && params[:end_date].blank?
+      # Do nothing
+    elsif params[:begin_date].present? && params[:end_date].blank?
+      search_params[:admission_date] = (parse_date(params[:begin_date]) - 1)..(99999999)
+    elsif params[:begin_date].blank? && params[:end_date].present?
+      search_params[:admission_date] = (0)..(parse_date(params[:end_date]))
+    else
+      search_params[:admission_date] = (parse_date(params[:begin_date]) - 1)..(parse_date(params[:end_date]))
+    end
+
+    @admissions = Admission
+      .where("full_name LIKE ?", "%#{params[:name]}%")
+      .where(search_params)
+      .paginate(:page => params[:page])
   end
 
   # GET /admissions/1
@@ -21,76 +38,29 @@ class AdmissionsController < ApplicationController
   def show
   end
 
+  def per_page_default
+    @per_page ||= 10
+  end
+  helper_method :per_page_default
+
   private
 
-  def search(search_array, facets, per_page = 20)
-    @search = Admission.search do
-      search_array.each do |search|
-        fulltext search[:value], fields: search[:field]
-      end
-
-
-      facets.each do |f| 
-        with f, params[f] unless params[f].nil?
-        facet f
-      end
-
-      paginate(per_page: per_page, page: params[:page])
-    end
-
-    #params = @saved_params
-    @admissions = @search.results
+  def facet_fields
+    @facets ||= [:age,
+     :for_what_committed_index,
+     :religion_index,
+     :parentage_index,
+     :whereborn_country,
+     :whereborn_state,
+     :whereborn_city
+    ]
   end
 
-  def non_paginated_search
-    ## Sunspot imposes per_page limits by default
-    ## we're working around this by limiting our results to the total number of records
-    params.delete(:page)
-    search(@search_array, @facets, Admission.all.count)
-  end
+  private
 
-  def parse_search_request
-    fields = select_all_search_fields
-    values = select_all_search_values
-    remove_blank_valued_fields(fields, values)
-    validate_search_fields(fields, values)
-    set_search_fields_and_values(fields, values)
-    handle_blank_search
-  end
-
-  def select_all_search_fields
-    params.select { |key, value| key.to_s.match(/^field/)}.values
-  end
-
-  def select_all_search_values
-    params.select { |key, value| key.to_s.match(/^value/)}.values
-  end
-
-  def remove_blank_valued_fields(fields, values)
-    while values.rindex("") != nil
-      blank_index = values.rindex("")
-      [fields, values].each { |array| array.slice!(blank_index) }
-    end
-  end
-
-  def validate_search_fields(fields, values)
-    raise "Search Field Error" unless fields.length == values.length
-  end
-
-  def set_search_fields_and_values(fields, values)
-    @search_array = Array.new
-    counter = set_counter(fields)
-    counter.times do |i|
-      @search_array[i] = { field: fields[i], value: values[i] }
-    end
-  end
-
-  def set_counter(fields)
-    return fields.count
-  end
-
-  def handle_blank_search
-    @search_array = [{ value: nil, field: nil }] if @search_array.empty?
+  def parse_date(date)
+    month, day, year = date.match(/(\d+)\/(\d+)\/(\d+)/).captures
+    ("#{ year }#{ month.rjust(2, "0") }#{ day.rjust(2, "0") }").to_i
   end
 
   # Use callbacks to share common setup or constraints between actions.

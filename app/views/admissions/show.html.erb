@@ -5,7 +5,7 @@
   <h2>Admission information</h2>
 
     <p> <%= "#{Admission.human_attribute_name(:history_number)}: #{@admission.history_number}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:date)}: #{@admission.date}" %> </p>
+    <p> <%= "#{Admission.human_attribute_name(:date)}: #{@admission.admission_date}" %> </p>
     <p> <%= "#{Admission.human_attribute_name(:no_of_times_in_refuge)}: #{@admission.no_of_times_in_refuge}" %> </p>
     <p> <%= "#{Admission.human_attribute_name(:for_what_committed)}:\t#{@admission.for_what_committed}" %> </p>
     <p> <%= "#{Admission.human_attribute_name(:by_whom_committed)}:\t#{@admission.by_whom_committed}" %> </p>
@@ -24,7 +24,6 @@
     <% unless @admission.history_number.nil? %>
       <% if related_admissions.count > 1 %>
         <h2> Other admission records</h2>
-        <%= render 'admissions/table' %>
       <% end %>
     <% end %>
 

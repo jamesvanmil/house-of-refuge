@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/datepicker
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require add_and_remove_fields
+//= require select2
 //= require_tree .
