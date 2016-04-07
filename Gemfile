@@ -6,6 +6,7 @@ gem 'will_paginate-bootstrap'
 gem 'paperclip'
 gem 'select2-rails'
 gem 'jquery-ui-rails'
+gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -44,7 +45,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'sunspot_solr'
   gem 'progress_bar'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

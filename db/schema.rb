@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151113183344) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admissions", force: :cascade do |t|
     t.integer  "admission_date"
     t.integer  "age"
@@ -60,7 +63,7 @@ ActiveRecord::Schema.define(version: 20151113183344) do
     t.datetime "updated_at",               null: false
   end
 
-  add_index "admissions", ["history_number"], name: "index_admissions_on_history_number"
+  add_index "admissions", ["history_number"], name: "index_admissions_on_history_number", using: :btree
 
   create_table "gallery_images", force: :cascade do |t|
     t.text     "title"
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20151113183344) do
     t.text     "description"
     t.text     "source_text"
     t.text     "source_link"
-    t.text     "format"
-    t.text     "subject"
+    t.text     "format",                          array: true
+    t.text     "subject",                         array: true
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
