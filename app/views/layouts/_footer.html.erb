@@ -1,10 +1,28 @@
-<div class="footer">
+<footer class="section" id="footer-all">
     <div class="container">
-  <hr>
-  <p class="text-center text-muted">
-    Cincinnati House of Refuge Project<br>
-    CC-BY, 2016<br>
-    <%= link_to "Contact", "#" %>
-  </p>
-</div>
-</div>
+        <div class="row">
+            <div class="col-sm-6" id="footer-column">
+                <h2 id="footer-text">Cincinnati House of Refuge Project</h2>
+                   <%= link_to "CC-BY, 2016", "https://creativecommons.org/licenses/by/3.0/us/" %>
+                <p>Carolyn Hansen, James Van Mil, Sean Crowe, Suzanne Reller</p>
+            </div>
+            <div class="col-sm-6" id="footer-column">
+                <p class="text-info text-right"></p>
+                <div class="row">
+                    <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-9 hidden-xs text-right" id="icon-container">
+                      <%= link_to "#", id: "envelope-icon" do %>
+                        <i class="fa fa-3x fa-envelope fa-fw"></i>
+                      <% end %>
+                      <%= link_to "http://www.github.com/jamesvanmil/house-of-refuge", id: "git-icon" do %>
+                        <i class="fa fa-3x fa-fw fa-github"></i>
+                      <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

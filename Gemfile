@@ -13,6 +13,7 @@ gem 'rails', '4.2.0'
 gem 'sqlite3'
 # Use bootstrap with SASS
 gem 'bootstrap-sass', '~> 3.3.4'
+gem 'font-awesome-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

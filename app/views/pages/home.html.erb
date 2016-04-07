@@ -1,40 +1,70 @@
-<%= stylesheet_link_tag 'pages' %>
-  <div class="container">
-
-    <!-- Heading Row -->
-    <div class="row">
-        <div class="col-md-6">
-          <%= image_tag 'hor.jpg', class: 'img-responsive img-rounded', alt: 'Cincinnati House of Refuge' %>
-        </div>
-        <div class="col-md-6">
-            <h1>Learn about crime, poverty, and refuge in 19th century Cincinnati</h1>
-            <p class="intro-text"> Welcome to the Cincinnati House of Refuge Project. This site features a searchable database of over 6,000 records of children admitted to the House of Refuge from 1869-1902.</p>
-            <p>Explore the database, read about the history of refuge in Cincinnati, and look at photographs, maps, and documents. We hope that this site helps you learn more about the lives of children in the Queen City.</p>
-            <p class="image-credit"><i>Image:</i> "Cincinnati House of Refuge." Undated. The Public Library of Cincinnati and Hamilton County.</p>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="carousel-example" data-interval="4500" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <%= image_tag "christmas_rehearsal.png", id: "carousel-img" %>
+                        </div>
+                        <div class="hidden-sm item">
+                            <%= image_tag "dining_room_boys2.png" %>
+                        </div>
+                        <div class="item">
+                            <%= image_tag "blue_map.png" %>
+                        </div>
+                        <div class="item">
+                            <%= image_tag "boys_dorm.png" %>
+                        </div>
+                        <div class="item">
+                            <%= image_tag "nypl_hor2.jpg" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="page-header text-left" contenteditable="true">
+                  <h1 id="page-title">Learn about Children, Crime, and Refuge
+                    <span class="subheader">in 19th century Cincinnati</span></h1>
+                </div>
+                <p id="text-primary">From 1850 to 1912, thousands of poor and "criminal" children were sent
+                    to the Cincinnati House of Refuge for care and rehabilitation.<br><br>Explore
+                    what what life was like for these children by searching our database of
+                    admission records, reading about the history of Refuge in Cincinnati, and
+                    viewing images, maps, and documents.</p>
+            </div>
         </div>
     </div>
-    <!-- /.row -->
-
-    <hr>
-
-    <!-- Content Row -->
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Search Records</h2>
-            <p>Search over 6,000 intake records of children admitted from 1869-1902.</p>
-            <%= link_to 'More Info', admissions_path, class: 'btn btn-default' %>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                              <%= image_tag "register.png", class: "center-block img-circle img-responsive", id: "tri-image" %>
+                                <h2 class="text-center">Search Records</h2>
+                                <p class="text-center">Search records of children's admissions to
+                                <br>the House of Refuge from 1869-1902.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <%= image_tag "OhCiUAR_House_of_Refuge_1.jpg", class: "center-block img-circle img-responsive", id: "tri-image" %>
+                                <h2 class="text-center">The Refuge Story</h2>
+                                <p class="text-center">Learn about the history of the House of Refuge
+                                    <br>and why children were admitted there.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <%= image_tag "boys_watermelon.png", class: "center-block img-circle img-responsive", id: "tri-image" %>
+                                <h2 class="text-center">Browse Image Gallery</h2>
+                                <p class="text-center">View images, maps, and documents about
+                                    <br>the House of Refuge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4">
-            <h2>Explore Refuge</h2>
-            <p>What was the House of Refuge and why were children admitted there?</p>
-            <%= link_to 'More Info', '#', class: 'btn btn-default' %>
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4">
-            <h2>Browse Images</h2>
-            <p>Browse images, maps, and documents related to the House of Refuge.</p>
-            <%= link_to 'More Info', gallery_images_path, class: 'btn btn-default' %>
-        </div>
-        <!-- /.col-md-4 -->
     </div>
+</div>
