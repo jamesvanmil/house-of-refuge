@@ -4,12 +4,13 @@ class GalleryImagesController < ApplicationController
   # GET /gallery_images
   # GET /gallery_images.json
   def index
-    @search = GalleryImage.search do
-      paginate(per_page: 20, page: params[:page])
-      facet(:subject)
-      with(:subject, params[:subject]) if params[:subject].present? 
-    end
-    @gallery_images = @search.results
+    subject_search = Array.new
+
+    subject_search << params[:subject] unless params[:subject].blank?
+
+    @gallery_images = GalleryImage
+      .where("subject @> ?", "{#{subject_search.join(',')}}")
+      .paginate(:page => params[:page])
   end
 
   # GET /gallery_images/1
@@ -67,13 +68,14 @@ class GalleryImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gallery_image
-      @gallery_image = GalleryImage.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gallery_image_params
-      params.require(:gallery_image).permit(:title, :creator, :date, :description, :source_text, :source_link, :format, :subject, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gallery_image
+    @gallery_image = GalleryImage.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def gallery_image_params
+    params.require(:gallery_image).permit(:title, :creator, :date, :description, :source_text, :source_link, :format, :subject, :image)
+  end
 end

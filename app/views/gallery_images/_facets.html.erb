@@ -2,25 +2,13 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
 
- <% def remove_loc(ary,val) %>
-   <% remove = ary.dup %>
-   <% remove.delete(val) %>
-   <% remove %>
- <% end %>
+      <h3>Subjects</h3>
 
- <h3>Subjects</h3>
- <% for row in @search.facet(:subject).rows %>
-   <% if params[:subject].present? %>
-     <% unless params[:subject].include? row.value%>
-       <li><%= link_to row.value, request.params.merge({subject: params[:subject] | [row.value], page: nil}) %></li>
-     <% else %>
-       <li><%= link_to "#{row.value} (remove)", request.params.merge({subject: remove_loc(params[:subject], row.value) }), {style: "color: red"} %></li>
-     <% end %>
-   <% else %>
-     <li><%= link_to row.value, request.params.merge({subject: [row.value], page: nil}) %></li>
-   <% end %>
- <%end%>
-
+      <% (@gallery_images.collect { |g| g.subject }).flatten.uniq.sort.reject(&:empty?).each do |subject| %>
+        <li>
+          <%= facet_link(subject) %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

@@ -7,8 +7,8 @@ class CreateGalleryImages < ActiveRecord::Migration
       t.text :description
       t.text :source_text
       t.text :source_link
-      t.text :format
-      t.text :subject
+      t.text :format, array: true
+      t.text :subject, array: true
 
       t.timestamps null: false
     end
