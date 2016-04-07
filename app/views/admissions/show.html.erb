@@ -1,30 +1,109 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @admission.full_name %></h1>
+  <div class="section" id="breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-offset-10-12" id="breadcrumb">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#">Search Records</a>
+            </li>
+            <li>
+              <a href="#">Results</a>
+            </li>
+            <li class="active">View</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="section">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="page-header" id="page-title">
+                          <h1>View Record For
+                              <font color="#777777">
+                                  <span style="font-size: 23.3999996185303px; line-height: 23.3999996185303px;"><%= @admission.full_name %></span></font></h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-  <h2>Admission information</h2>
-
-    <p> <%= "#{Admission.human_attribute_name(:history_number)}: #{@admission.history_number}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:date)}: #{@admission.admission_date}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:no_of_times_in_refuge)}: #{@admission.no_of_times_in_refuge}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:for_what_committed)}:\t#{@admission.for_what_committed}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:by_whom_committed)}:\t#{@admission.by_whom_committed}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:disposal)}:\t#{@admission.disposal}" %> </p>
-
-  <h2>Demographic information</h2>
-
-    <p> <%= "#{Admission.human_attribute_name(:age)}:\t#{@admission.age}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:gender)}:\t#{@admission.gender}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:whereborn_city)}:\t#{@admission.whereborn_city}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:whereborn_state)}:\t#{@admission.whereborn_state}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:whereborn_country)}:\t#{@admission.whereborn_country}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:religion)}:\t#{@admission.religion}" %> </p>
-    <p> <%= "#{Admission.human_attribute_name(:parentage)}:\t#{@admission.parentage}" %> </p>
-
-    <% unless @admission.history_number.nil? %>
-      <% if related_admissions.count > 1 %>
-        <h2> Other admission records</h2>
-      <% end %>
-    <% end %>
-
-<%= link_to 'Back', admissions_path %>
+        <div class="section" id="section-2">
+          <div class="col-sm-offset-2 col-sm-3" id="col-form-left">
+            <ul class="list-group text-right">
+              <li class="list-group-item" id="form-left">Name:</li>
+              <li class="list-group-item" id="form-left">History Number:</li>
+              <li class="list-group-item" id="form-left">Date Admitted:</li>
+              <li class="list-group-item" id="form-left">No. of Times in Refuge:</li>
+              <li class="list-group-item" id="form-left">Reason Admitted:</li>
+              <li class="list-group-item" id="form-left">Committed By:</li>
+              <li class="list-group-item" id="form-left">Disposal:</li>
+              <li class="list-group-item" id="form-left">Age:</li>
+              <li class="list-group-item" id="form-left">Gender:</li>
+              <li class="list-group-item" id="form-left">Birth City:</li>
+              <li class="list-group-item" id="form-left">Birth State:</li>
+              <li class="list-group-item" id="form-left">Birth Country:</li>
+              <li class="list-group-item" id="form-left">Religion:</li>
+              <li class="list-group-item" id="form-left">Race/Ethnicity:</li>
+            </ul>
+          </div>
+          <div class="col-sm-4" id="col-form-right">
+            <ul class="list-group">
+              <li class="list-group-item" id="form-right"><%= @admission.full_name.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.history_number.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.admission_date.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.no_of_times_in_refuge.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.for_what_committed.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.by_whom_committed.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.disposal.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.age.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.gender.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.whereborn_city.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.whereborn_state.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.whereborn_country.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.religion.presence || '-' %></li>
+              <li class="list-group-item" id="form-right"><%= @admission.parentage.presence || '-' %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+   <% unless @admission.history_number.nil? %>
+    <% if related_admissions.count > 1 %>
+      <h2> Other admission records</h2>
+      <div class="col-sm-12" id="record-header">
+          <h2>
+            <br>Related Admissions</h2>
+        </div>
+        <div class="row" id="related-rec">
+          <div class="col-sm-offset-2 col-sm-6">
+            <ul>
+              <li>
+                <a href="#">George Gunter, </a>#2799, Admitted: 1899-01-01</li>
+              <li>
+                <a href="#">Thomas Gunter, </a>#2798, Admitted: 1899-01-01</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+    <div class="section text-left">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="#" id="back-arrow"><i class="fa fa-3x fa-arrow-circle-o-left fa-fw text-muted"></i></a>
+          </div>
+          <div class="col-sm-12">
+            <h4 id="back-arrow"><%= link_to 'Back to Search Results', admissions_path %></h4>
+          </div>
+        </div>
+      </div>
+    </div>
