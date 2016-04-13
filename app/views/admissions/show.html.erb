@@ -35,45 +35,62 @@
       </div>
 
         <div class="section" id="section-2">
-          <div class="col-sm-offset-2 col-sm-3" id="col-form-left">
-            <ul class="list-group text-right">
-              <li class="list-group-item" id="form-left">Name:</li>
-              <li class="list-group-item" id="form-left">History Number:</li>
-              <li class="list-group-item" id="form-left">Date Admitted:</li>
-              <li class="list-group-item" id="form-left">No. of Times in Refuge:</li>
-              <li class="list-group-item" id="form-left">Reason Admitted:</li>
-              <li class="list-group-item" id="form-left">Committed By:</li>
-              <li class="list-group-item" id="form-left">Disposal:</li>
-              <li class="list-group-item" id="form-left">Age:</li>
-              <li class="list-group-item" id="form-left">Gender:</li>
-              <li class="list-group-item" id="form-left">Birth City:</li>
-              <li class="list-group-item" id="form-left">Birth State:</li>
-              <li class="list-group-item" id="form-left">Birth Country:</li>
-              <li class="list-group-item" id="form-left">Religion:</li>
-              <li class="list-group-item" id="form-left">Race/Ethnicity:</li>
-            </ul>
-          </div>
-          <div class="col-sm-4" id="col-form-right">
-            <ul class="list-group">
-              <li class="list-group-item" id="form-right"><%= @admission.full_name.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.history_number.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.admission_date.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.no_of_times_in_refuge.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.for_what_committed.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.by_whom_committed.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.disposal.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.age.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.gender.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.whereborn_city.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.whereborn_state.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.whereborn_country.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.religion.presence || '-' %></li>
-              <li class="list-group-item" id="form-right"><%= @admission.parentage.presence || '-' %></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+          <div class="col-sm-offset-2 col-sm-5" >
+            <table class="table table-bordered">
+              <tr>
+                <td class="text-right">Name:</td>
+                <td><%= @admission.full_name.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">History Number:</td>
+                <td><%= @admission.history_number.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Date Admitted:</td>
+                <td><%= @admission.admission_date.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Number of Times in Refuge:</td>
+                <td><%= @admission.no_of_times_in_refuge.presence || '-' %></td>
+              </tr> 
+              <tr>
+                <td class="text-right">Reason Admitted:</td>
+                <td><%= @admission.for_what_committed.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Committed By:</td>
+                <td><%= @admission.by_whom_committed.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Disposal:</td>
+                <td><%= @admission.disposal.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Age:</td>
+                <td><%= @admission.age.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Gender:</td>
+                <td><%= @admission.gender.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Birth City:</td>
+                <td><%= @admission.whereborn_city.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Birth State:</td>
+                <td><%= @admission.whereborn_state.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Religion:</td>
+                <td><%= @admission.religion.presence || '-' %></td>
+              </tr>
+              <tr>
+                <td class="text-right">Race/Ethnicity:</td>
+                <td><%= @admission.parentage.presence || '-' %></td>
+              </tr>
+            </table>
+
    <% unless @admission.history_number.nil? %>
     <% if related_admissions.count > 1 %>
       <h2> Other admission records</h2>
@@ -82,17 +99,14 @@
             <br>Related Admissions</h2>
         </div>
         <div class="row" id="related-rec">
-          <div class="col-sm-offset-2 col-sm-6">
+          <div class="col-sm-offset-2 col-sm-7">
             <ul>
-              <li>
-                <a href="#">George Gunter, </a>#2799, Admitted: 1899-01-01</li>
-              <li>
-                <a href="#">Thomas Gunter, </a>#2798, Admitted: 1899-01-01</li>
+              <% related_admissions.each do |related| %>
+                <li><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  "##{related.history_number}, Admitted #{related.admission_date}"%></li>
+              <% end %>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
   <% end %>
   <% end %>
     <div class="section text-left">
