@@ -7033,9 +7033,13 @@ a {
   color: #555555;
 }
 
-
-
-
+a.deco-none {
+  text-decoration:none !important;
+  color: #000000;
+}
+#team > div > .row {
+  padding-bottom: 20px;
+}
 
 
 
