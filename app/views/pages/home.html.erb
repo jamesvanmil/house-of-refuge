@@ -43,23 +43,29 @@
                 <div class="section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4">
+                          <div class="col-md-4">
+                            <%= link_to admissions_path, class: 'deco-none' do %>
                               <%= image_tag "register.png", class: "center-block img-circle img-responsive", id: "tri-image" %>
                                 <h2 class="text-center">Search Records</h2>
                                 <p class="text-center">Search records of children's admissions to
                                 <br>the House of Refuge from 1869-1902.</p>
+                              <% end %>
                             </div>
                             <div class="col-md-4">
+                            <%= link_to what_was_refuge_path, class: 'deco-none' do %>
                                 <%= image_tag "OhCiUAR_House_of_Refuge_1.jpg", class: "center-block img-circle img-responsive", id: "tri-image" %>
                                 <h2 class="text-center">The Refuge Story</h2>
                                 <p class="text-center">Learn about the history of the House of Refuge
                                     <br>and why children were admitted there.</p>
+                              <% end %>
                             </div>
                             <div class="col-md-4">
+                            <%= link_to gallery_images_path, class: 'deco-none' do %>
                                 <%= image_tag "boys_watermelon.png", class: "center-block img-circle img-responsive", id: "tri-image" %>
                                 <h2 class="text-center">Browse Image Gallery</h2>
                                 <p class="text-center">View images, maps, and documents about
                                     <br>the House of Refuge.</p>
+                              <% end %>
                             </div>
                         </div>
                     </div>

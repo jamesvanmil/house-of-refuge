@@ -113,10 +113,10 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <a href="#" id="back-arrow"><i class="fa fa-3x fa-arrow-circle-o-left fa-fw text-muted"></i></a>
-          </div>
-          <div class="col-sm-12">
-            <h4 id="back-arrow"><%= link_to 'Back to Search Results', admissions_path %></h4>
+              <%= link_to admissions_path do %>
+              <i class="fa fa-3x fa-arrow-circle-o-left fa-fw text-muted"></i>
+              <h4 id="back-arrow">Back to Search Results</h4>
+            <% end %>
           </div>
         </div>
       </div>
