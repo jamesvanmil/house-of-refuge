@@ -14,7 +14,7 @@ namespace :hor do
   end
 
   desc "Destroy and import all admission records"
-  task:reset => [:delete_all, :import_from_csv] do
+  task:reset => [:delete, :import] do
   end
 
   def create_admission(row)

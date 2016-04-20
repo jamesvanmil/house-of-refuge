@@ -28,9 +28,9 @@ class AdmissionsController < ApplicationController
     end
 
     @admissions = Admission
-      .where("full_name LIKE ?", "%#{params[:name]}%")
+      .where("full_name ILIKE ?", "%#{params[:name]}%")
       .where(search_params)
-      .paginate(:page => params[:page])
+      .paginate(:page => params[:page], per_page: 10)
   end
 
   # GET /admissions/1

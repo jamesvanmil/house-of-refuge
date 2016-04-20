@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-justified nav-stacked nav-tabs" id="nav-bar">
-                  <li class=<%= 'active' if current_page?(home_path) %>>
+                  <li class=<%= 'active' if current_page?(home_path) or current_page?(root_path) %>>
                     <%= link_to 'Home', home_path, id: 'nav-link' %>
                   </li>
                   <li class=<%= 'active' if params[:controller] == 'admissions' %>>
