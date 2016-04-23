@@ -10,7 +10,7 @@ namespace :gallery do
   desc "import gallery images and metadata"
   task:import => :environment do
     begin
-      file = open("#{Rails.root}/tmp/hor_images.csv")
+      file = open("#{Rails.root}/vendor/hor_images.csv")
     rescue Errno::ENOENT => e
       puts "\n*** Import CSV not found.\n\tSee README for details.\n"
       raise e
@@ -18,6 +18,9 @@ namespace :gallery do
     CSV.foreach(file, headers: true, encoding: 'windows-1251:utf-8') do |row|
       begin
         gallery_image = GalleryImage.new
+        gallery_image.image_original = row['file_name_original']
+        gallery_image.image_medium = row['file_name_medium']
+        gallery_image.image_thumb = row['file_name_thumb']
         gallery_image.title = row['title']
         gallery_image.creator = row['creator']
         gallery_image.date = row['date']
@@ -26,7 +29,6 @@ namespace :gallery do
         gallery_image.source_link = row['source_link']
         gallery_image.format = split_to_array(row['format'])
         gallery_image.subject = split_to_array(row['subject'])
-        gallery_image.image = open("#{Rails.root}/tmp/hor_images/#{row['file_name']}")
         gallery_image.save
         puts '::success::'
       rescue Errno::ENOENT => e

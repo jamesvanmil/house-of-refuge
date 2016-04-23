@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-8 col-sm-8 col-lg-8">  <p>
-    <%= image_tag @gallery_image.image.url(:medium), class: 'img-responsive' %>
+    <%= image_tag @gallery_image.image_medium, class: 'img-responsive' %>
 </div>
 <div class="col-md-4 col-sm-4 col-lg-4">
 </p>
@@ -28,13 +28,14 @@
   <strong>Format:</strong>
   <%= @gallery_image.format.collect { |row| row }.join(", ").html_safe unless @gallery_image.format.nil? %>
 </p>
-
+<% unless @gallery_image.source_text.blank? %>
 <p>
   <strong>Source:</strong>
   <%= link_to @gallery_image.source_text, @gallery_image.source_link%> (External Link)
+<% end %>
 </p>
 <p>
-<%= link_to @gallery_image.image.url, class: 'btn btn-default btn-xs' do %>
+<%= link_to "/assets/#{@gallery_image.image_original}", class: 'btn btn-default btn-xs' do %>
   <span class="glyphicon glyphicon-download"></span> Download Image
 <% end %>
 </p>
