@@ -105,7 +105,6 @@ dfn {
 }
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
 }
 mark {
   background: #ff0;
@@ -1276,10 +1275,6 @@ h1,
 h2,
 .h2,
 h3,
-.h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
 h1 small,
 .h1 small,
 h2 small,
@@ -1332,6 +1327,7 @@ h3,
 h4,
 .h4 {
   font-size: 18px;
+  font-weight: bold;
 }
 h5,
 .h5 {
@@ -1453,8 +1449,8 @@ a.bg-danger:hover {
   background-color: #e27c79;
 }
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
+  padding-bottom: 1px;
+  margin: 10px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
 ul,
@@ -6654,8 +6650,9 @@ body {
 }
 .section {
   position: relative;
-  padding: 35px 0;
+  padding: 20px 0;
 }
+
 .section .background-image {
   z-index: 0;
   position: absolute;
@@ -7041,7 +7038,24 @@ a.deco-none {
   padding-bottom: 20px;
 }
 
+#home-main {
+  padding-top: 35px;
+}
 
+.form-margin20 {
+  margin-left:20px;
+}
 
+.pagination {
+  @media (max-width: 768px) {
+    li {
+      display: none;
+      &.active,&.prev,&.next {
+        display: inline; }
+    }
+  }
+}
 
-
+#result-number {
+  padding-left:40px;
+}

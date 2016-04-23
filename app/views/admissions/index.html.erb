@@ -1,14 +1,33 @@
 <div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header" id="page-title">
-                    <h1>Search Records
-                        <font color="#777777">
-                            <span style="font-size: 23.3999996185303px; line-height: 23.3999996185303px;">Explore our database of 6,000+ admission records from 1869-1902</span></font></h1>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header" id="page-title">
+          <h1>Search Records
+            <font color="#777777">
+              <span style="font-size: 23.3999996185303px; line-height: 23.3999996185303px;">Explore our database of 6,000+ admission records from 1869-1902</span></font></h1>
         </div>
+      </div>
     </div>
   </div>
-  <%= render 'form' %>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="col-sm-4 sidebar">
+    <%= render 'filter' %>
+  </div>
+
+  <div class="col-sm-8">
+  <div class="row">
+    <%= render 'admissions/results' %>
+  </div>
+  <div class="row">
+    <%= will_paginate @admissions, renderer: BootstrapPagination::Rails %>
+  </div>
+<div class="row">
+    <%= link_to "Download results as JSON", params.merge({ format: 'json' }) %>
+  </div>
+  </div>
+</div>
