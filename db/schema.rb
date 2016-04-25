@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113183344) do
+ActiveRecord::Schema.define(version: 20151113182655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,20 +66,19 @@ ActiveRecord::Schema.define(version: 20151113183344) do
   add_index "admissions", ["history_number"], name: "index_admissions_on_history_number", using: :btree
 
   create_table "gallery_images", force: :cascade do |t|
+    t.text     "image_thumb"
+    t.text     "image_medium"
+    t.text     "image_original"
     t.text     "title"
     t.text     "creator"
     t.text     "date"
     t.text     "description"
     t.text     "source_text"
     t.text     "source_link"
-    t.text     "format",                          array: true
-    t.text     "subject",                         array: true
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.text     "format",                      array: true
+    t.text     "subject",                     array: true
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

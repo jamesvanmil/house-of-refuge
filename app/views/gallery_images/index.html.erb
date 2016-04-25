@@ -6,7 +6,7 @@
     <% @gallery_images.each do |gallery_image| %>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 thumb"> 
         <%= link_to gallery_image_path(gallery_image), class: "thumbnail" do %>
-          <%= image_tag gallery_image.image.url(:thumb) %>
+          <%= image_tag gallery_image.image_thumb %>
         <% end %>
       </div>   
     <% end %>

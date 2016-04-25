@@ -3,7 +3,6 @@ ruby '2.1.5'
 #ruby-gemset=hor
 
 gem 'will_paginate-bootstrap'
-gem 'paperclip'
 gem 'select2-rails'
 gem 'jquery-ui-rails'
 gem 'pg'
