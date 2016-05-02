@@ -21,13 +21,11 @@ module AdmissionsHelper
   end
 
   def facets_for_select(field)
-    values = Array.new
-    Hash[
-      @admissions.uniq.pluck(field).zip([nil])
-    ].keys.each do |value|
-      values << ["#{value} (#{@admissions.where("#{field.to_s} = ? ", value).count})", value]
+    array = Array.new
+    (@facet_hash[field].sort_by {|k,v| v}.reverse).each do |value|
+      array << ["#{value[0]} (#{value[1]})", value[0]]
     end
-    values
+    array
   end
 
   def facet_count_for_gender(value)
