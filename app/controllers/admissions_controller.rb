@@ -27,10 +27,8 @@ class AdmissionsController < ApplicationController
       search_params[:admission_date] = (parse_date(params[:begin_date]) - 1)..(parse_date(params[:end_date]))
     end
 
-    @admissions = Admission
-      .where("full_name ILIKE ?", "%#{params[:name]}%")
-      .where(search_params)
-      .paginate(:page => params[:page], per_page: 10)
+    @admissions = search_results(search_params).paginate(:page => params[:page], per_page: per_page_default)
+    @facet_hash = build_facets(search_results(search_params))
   end
 
   # GET /admissions/1
@@ -45,6 +43,21 @@ class AdmissionsController < ApplicationController
 
   private
 
+  def search_results(search_params)
+    Admission.where("full_name ILIKE ?", "%#{params[:name]}%").where(search_params)
+  end
+
+  def build_facets(search_results)
+    facets = Hash.new
+    facet_fields.each do |field|
+      facets[field] = Hash[ search_results.uniq.pluck(field).zip([nil]) ]
+      facets[field].keys.each do |value|
+        facets[field][value] = search_results.where("#{field.to_s} = ? ", value).count
+      end
+    end
+    facets
+  end
+
   def facet_fields
     @facets ||= [:age,
      :for_what_committed_index,
@@ -55,8 +68,6 @@ class AdmissionsController < ApplicationController
      :whereborn_city
     ]
   end
-
-  private
 
   def parse_date(date)
     month, day, year = date.match(/(\d+)\/(\d+)\/(\d+)/).captures
