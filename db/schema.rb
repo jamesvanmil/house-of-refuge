@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113182655) do
+ActiveRecord::Schema.define(version: 20160502175116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,14 @@ ActiveRecord::Schema.define(version: 20151113182655) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "admissions", ["age"], name: "index_admissions_on_age", using: :btree
+  add_index "admissions", ["for_what_committed_index"], name: "index_admissions_on_for_what_committed_index", using: :btree
   add_index "admissions", ["history_number"], name: "index_admissions_on_history_number", using: :btree
+  add_index "admissions", ["parentage_index"], name: "index_admissions_on_parentage_index", using: :btree
+  add_index "admissions", ["religion_index"], name: "index_admissions_on_religion_index", using: :btree
+  add_index "admissions", ["whereborn_city"], name: "index_admissions_on_whereborn_city", using: :btree
+  add_index "admissions", ["whereborn_country"], name: "index_admissions_on_whereborn_country", using: :btree
+  add_index "admissions", ["whereborn_state"], name: "index_admissions_on_whereborn_state", using: :btree
 
   create_table "gallery_images", force: :cascade do |t|
     t.text     "image_thumb"
@@ -75,10 +82,14 @@ ActiveRecord::Schema.define(version: 20151113182655) do
     t.text     "description"
     t.text     "source_text"
     t.text     "source_link"
-    t.text     "format",                      array: true
-    t.text     "subject",                     array: true
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.text     "format",                          array: true
+    t.text     "subject",                         array: true
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end
