@@ -18,7 +18,6 @@ namespace :hor do
   end
 
   def create_admission(row)
-    puts row["full_name_not_standardized"]
     Admission.create(
       admission_date: convert_date(row["date"]),
       history_number: row["number"],

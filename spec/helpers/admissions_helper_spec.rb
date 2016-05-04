@@ -11,5 +11,35 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe AdmissionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#index_page" do
+
+  end
+
+  describe "#page_start" do
+
+  end
+
+  describe "#page_end" do
+
+  end
+
+  describe "#result_number" do
+
+  end
+
+  describe "#related_admissions" do
+
+  end
+
+  describe "facets_for_select" do
+
+  end
+
+  describe "facet_count_for_gender" do
+
+  end
+
+  describe "default_value" do
+
+  end
 end

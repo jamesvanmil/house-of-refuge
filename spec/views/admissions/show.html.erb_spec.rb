@@ -11,7 +11,6 @@ RSpec.describe "admissions/show", type: :view do
     end
 
     it "are displayed with the same history number" do
-      save_and_open_page
       expect(page).to have_link(admission_path @admission2)
       expect(page).to have_link(admission_path @admission3)
     end
