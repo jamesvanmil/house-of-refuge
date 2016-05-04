@@ -5,7 +5,7 @@ module AdmissionsHelper
   end
 
   def page_start
-    (index_page - 1) * per_page_default + 1
+    (index_page - 1) * Admission.per_page + 1
   end
 
   def page_end

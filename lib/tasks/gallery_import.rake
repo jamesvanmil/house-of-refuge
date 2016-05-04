@@ -30,7 +30,6 @@ namespace :gallery do
         gallery_image.format = split_to_array(row['format'])
         gallery_image.subject = split_to_array(row['subject'])
         gallery_image.save
-        puts '::success::'
       rescue Errno::ENOENT => e
         puts "\n*** Broken image link in csv.\n"
         puts "\t#{e}\n\n"
