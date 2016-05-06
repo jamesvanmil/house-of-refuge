@@ -10,6 +10,9 @@ require 'rails_helper'
 #     end
 #   end
 # end
+#
 RSpec.describe AdmissionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'friendly_date should return string with readable date' do
+    expect(helper.friendly_date('18911020')).to eq('10/20/1891')
+  end
 end

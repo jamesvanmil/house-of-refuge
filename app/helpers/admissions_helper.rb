@@ -35,4 +35,12 @@ module AdmissionsHelper
   def default_value(value)
     params[value]
   end
+
+  def friendly_date(value)
+    date_string = value.to_s
+    year = date_string[0..3]
+    month = date_string[4..5]
+    day = date_string[6..7]
+    "#{month}/#{day}/#{year}"
+  end
 end
