@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'progress_bar'
+  gem 'faker'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -56,7 +57,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'faker'
   gem 'capybara'
   gem 'launchy'
   gem 'selenium-webdriver'
