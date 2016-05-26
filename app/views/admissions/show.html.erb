@@ -47,7 +47,7 @@
               </tr>
               <tr>
                 <td class="text-right">Date Admitted:</td>
-                <td><%= @admission.admission_date.presence || '-' %></td>
+                <td><%= friendly_date(@admission.admission_date.presence) || '-' %></td>
               </tr>
               <tr>
                 <td class="text-right">Number of Times in Refuge:</td>
@@ -90,22 +90,19 @@
                 <td><%= @admission.parentage.presence || '-' %></td>
               </tr>
             </table>
-
+          </div>
    <% unless @admission.history_number.nil? %>
     <% if related_admissions.count > 1 %>
-      <h2> Other admission records</h2>
-      <div class="col-sm-12" id="record-header">
-          <h2>
-            <br>Related Admissions</h2>
-        </div>
         <div class="row" id="related-rec">
           <div class="col-sm-offset-2 col-sm-7">
+      <h2>Related admission records</h2>
             <ul>
               <% related_admissions.each do |related| %>
-                <li><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  "##{related.history_number}, Admitted #{related.admission_date}"%></li>
+                <li><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  "##{related.history_number}, Admitted #{friendly_date(related.admission_date)}"%></li>
               <% end %>
             </ul>
           </div>
+        </div>
         </div>
   <% end %>
   <% end %>
@@ -117,7 +114,6 @@
               <i class="fa fa-3x fa-arrow-circle-o-left fa-fw text-muted"></i>
               <h4 id="back-arrow">Back to Search Results</h4>
             <% end %>
-          </div>
           </div>
         </div>
       </div>
