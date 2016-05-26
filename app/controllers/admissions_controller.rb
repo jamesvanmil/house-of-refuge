@@ -28,6 +28,7 @@ class AdmissionsController < ApplicationController
     end
 
     @admissions = search_results(search_params).paginate(:page => params[:page], per_page: per_page_default)
+    session[:search_results] = request.url
     @facet_hash = build_facets(search_results(search_params))
   end
 
