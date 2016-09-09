@@ -27,9 +27,17 @@ class AdmissionsController < ApplicationController
       search_params[:admission_date] = (parse_begin_date(params[:begin_date]) - 1)..(parse_end_date(params[:end_date]))
     end
 
-    @admissions = search_results(search_params).paginate(:page => params[:page], per_page: per_page_default)
-    session[:search_results] = request.url
-    @facet_hash = build_facets(search_results(search_params))
+    respond_to do |format|
+      format.html do
+        @admissions = search_results(search_params).paginate(:page => params[:page], per_page: per_page_default)
+        session[:search_results] = request.url
+        @facet_hash = build_facets(search_results(search_params))
+      end
+
+      format.json do
+        @admissions = search_results(search_params)
+      end
+    end
   end
 
   # GET /admissions/1
