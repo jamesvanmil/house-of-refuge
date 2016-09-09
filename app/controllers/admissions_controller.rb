@@ -20,11 +20,11 @@ class AdmissionsController < ApplicationController
     if params[:begin_date].blank? && params[:end_date].blank?
       # Do nothing
     elsif params[:begin_date].present? && params[:end_date].blank?
-      search_params[:admission_date] = (parse_date(params[:begin_date]) - 1)..(99999999)
+      search_params[:admission_date] = (parse_begin_date(params[:begin_date]) - 1)..(99999999)
     elsif params[:begin_date].blank? && params[:end_date].present?
-      search_params[:admission_date] = (0)..(parse_date(params[:end_date]))
+      search_params[:admission_date] = (0)..(parse_end_date(params[:end_date]))
     else
-      search_params[:admission_date] = (parse_date(params[:begin_date]) - 1)..(parse_date(params[:end_date]))
+      search_params[:admission_date] = (parse_begin_date(params[:begin_date]) - 1)..(parse_end_date(params[:end_date]))
     end
 
     @admissions = search_results(search_params).paginate(:page => params[:page], per_page: per_page_default)
@@ -70,8 +70,23 @@ class AdmissionsController < ApplicationController
     ]
   end
 
-  def parse_date(date)
-    month, day, year = date.match(/(\d+)\/(\d+)\/(\d+)/).captures
+  def parse_begin_date(date)
+    parse_date(date, :begin)
+  end
+
+  def parse_end_date(date)
+    parse_date(date, :end)
+  end
+
+  def parse_date(date, type)
+    if date =~ /^ \d+ \/ \d+ \/ \d+ $/x
+      month, day, year = date.match(/ (\d+) \/ (\d+) \/ (\d+)/x).captures
+    else date =~ /^ \d{4} $/
+      month, day = ["01", "01"] if type == :begin
+      month, day = ["12", "31"] if type == :end
+      year = date
+    end
+
     ("#{ year }#{ month.rjust(2, "0") }#{ day.rjust(2, "0") }").to_i
   end
 
