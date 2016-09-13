@@ -17,7 +17,7 @@ module AdmissionsHelper
   end
 
   def related_admissions
-    @admissions = Admission.where(history_number: @admission.history_number)
+    @admissions = Admission.where(history_number: @admission.history_number) - [@admission]
   end
 
   def facets_for_select(field)

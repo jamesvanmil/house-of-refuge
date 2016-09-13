@@ -11,13 +11,12 @@ RSpec.describe "admissions/show", type: :view do
     end
 
     it "are displayed with the same history number" do
-      save_and_open_page
-      expect(page).to have_link(admission_path @admission2)
-      expect(page).to have_link(admission_path @admission3)
+      expect(page).to have_link(@admission2.full_name, href: admission_path(@admission2))
+      expect(page).to have_link(@admission3.full_name, href: admission_path(@admission3))
     end
 
     it "are not displayed with different history numbers" do
-      expect(page).to have_no_link(admission_path @admission4)
+      expect(page).to have_no_link(@admission4.full_name, href: admission_path(@admission4))
     end
   end
 end
