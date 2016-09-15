@@ -2,7 +2,7 @@
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
 
-      <h3>Subjects</h3>
+      <h3 class="facet-header">Subjects</h3>
 
       <% (@gallery_images.collect { |g| g.subject }).flatten.uniq.sort.reject(&:empty?).each do |subject| %>
         <li>

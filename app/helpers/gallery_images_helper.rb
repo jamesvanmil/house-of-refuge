@@ -1,11 +1,11 @@
 module GalleryImagesHelper
   def facet_link(subject)
     if params["subject"].nil?
-      link_to subject.capitalize, add_to_search(subject)
+      link_to subject.capitalize, add_to_search(subject), class: 'facet-link'
     elsif params["subject"].include?(subject) 
-      link_to subject.capitalize + " (remove)", remove_from_search(subject)
+      link_to subject.capitalize + " (remove)", remove_from_search(subject), class: 'facet-link'
     else
-      link_to subject.capitalize, add_to_search(subject)
+      link_to subject.capitalize, add_to_search(subject), class: 'facet-link'
     end
   end
 

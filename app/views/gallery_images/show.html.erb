@@ -47,6 +47,6 @@
   <%= @gallery_image.subject.collect {|row| link_to row, gallery_images_path(params: { subject: [row] })}.join(", ").html_safe unless @gallery_image.subject.nil? %>
   </p>
   <div class="back-button">
-<%= link_to 'Back to gallery', gallery_images_path, class: 'btn btn-default' %>
+<%= link_to 'Back to gallery', gallery_images_path, class: 'btn btn-default', id: 'gallery-back-button' %>
   </div>
 </div>
