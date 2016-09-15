@@ -7,7 +7,7 @@ namespace :gallery do
     end
   end
 
-  desc "import gallery images and metadata"
+  desc "Import gallery images and metadata"
   task:import => :environment do
     begin
       file = open("#{Rails.root}/vendor/hor_images.csv")
