@@ -99,7 +99,7 @@
       <h2>Related admission records</h2>
             <ul>
               <% related_admissions.each do |related| %>
-                <li><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  " Admission date: #{friendly_date(related.admission_date)}"%></li>
+                <li class="related-admission"><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  " Admission date: #{friendly_date(related.admission_date)}"%></li>
               <% end %>
             </ul>
           </div>
