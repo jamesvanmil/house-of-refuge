@@ -4,9 +4,16 @@ Welcome to the Cincinnati House of Refuge Project. This is the repository for th
 
 Explore the database, read about the history of refuge in Cincinnati, and look at photographs, maps, and documents. We hope that this site helps you learn more about the lives of children in the Queen City.
 
-##Image Gallery Configuration
+##Installation
 
-To import gallery images with metadata, place image metadata in CSV under /tmp/
-  * Filename: "hor_images.csv"
-  * Columns (in order): file_name, title, creator, date, description, source_text, source_link, format, subject.
-  * *file_name* should be a local (in-app) url to the associated, full size image file. e.g. /tmp/hor_images/\*
+There are rake tasks for populating the site with admission records and images for the gallery.
+
+###Images
+
+`rake hor:import`
+
+###Admission records
+
+`rake gallery:import`
+
+The admission records data is included in the vendor directory as [data.csv](http://github.com/jamesvanmil/house-of-refuge/blob/master/vendor/data.csv).
