@@ -13,7 +13,8 @@ json.array!(@admissions) do |admission|
     :whereborn_city,
     :whereborn_state,
     :religion,
-    :parentage
+    :parentage,
+    :handle
 
   json.url admission_url(admission, format: :json)
 end

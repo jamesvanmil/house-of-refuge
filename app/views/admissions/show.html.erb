@@ -92,12 +92,21 @@
             </table>
           </div>
         </div>
-   <% unless @admission.history_number.nil? %>
-    <% if related_admissions.count > 0 %>
+      <% unless @admission.handle.nil? %>
+        <div class="row" id='handle-btn'>
+          <div class="col-sm-offset-2 col-sm-5" >
+            <%= link_to @admission.handle, id: 'search-button', class: 'pull-right btn btn-default', target: '_blank' do %>
+              <span class="glyphicon glyphicon-file"></span> View Image
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <% unless @admission.history_number.nil? %>
+        <% if related_admissions.count > 0 %>
         <div class="row" id="related-rec">
           <div class="col-sm-offset-2 col-sm-7">
-      <h2>Related admission records</h2>
-            <ul>
+            <h2>Related admission records</h2>
+              <ul>
               <% related_admissions.each do |related| %>
                 <li class="related-admission"><%= link_to "#{related.full_name}, ", admission_path(related.id) %><%=  " Admission date: #{friendly_date(related.admission_date)}"%></li>
               <% end %>
