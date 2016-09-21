@@ -61,7 +61,8 @@ namespace :hor do
       complaint_of_police: row["complaint_of_police"],
       disposal: row["disposal"],
       trial_date: row["trial_date"],
-      image_no: row["image_no"]
+      image_no: row["image_no"],
+      handle: row["handle"]
     )
   end
 
