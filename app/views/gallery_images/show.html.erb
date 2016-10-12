@@ -15,6 +15,11 @@
 </p>
 
 <p>
+  <strong>Title Source:</strong>
+  <%= @gallery_image.title_source %>
+</p>
+
+<p>
   <strong>Creator:</strong>
   <%= @gallery_image.creator %>
 </p>
@@ -31,7 +36,7 @@
 <% unless @gallery_image.source_text.blank? %>
 <p>
   <strong>Source:</strong>
-  <%= link_to @gallery_image.source_text, @gallery_image.source_link%> (External Link)
+  <%= link_to @gallery_image.source_text, @gallery_image.source_link, target: '_blank' %> (External Link)
 <% end %>
 </p>
 <p>
