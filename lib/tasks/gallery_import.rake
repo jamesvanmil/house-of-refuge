@@ -22,6 +22,7 @@ namespace :gallery do
         gallery_image.image_medium = row['file_name_medium']
         gallery_image.image_thumb = row['file_name_thumb']
         gallery_image.title = row['title']
+        gallery_image.title_source = row['title_source']
         gallery_image.creator = row['creator']
         gallery_image.date = row['date']
         gallery_image.description = row['description']
